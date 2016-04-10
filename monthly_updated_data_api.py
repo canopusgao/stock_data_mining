@@ -1,8 +1,14 @@
 import Quandl
 
+tokenName = "CVQWV6wLVWnrgjsVbc4g"
+
 #ISM Manufacturing starts
 #ISM Manufacturing: Inventories Index
-Quandl.get("FRED/NAPMII", authtoken="CVQWV6wLVWnrgjsVbc4g")
+def get_quandl_ISM_M_II_Monthly(time):
+    "Get specific data from ISM Manufacturing Inventories Index from Quandl. Monthly updated data, time format: XXXX(YEAR)-XX(MONTH)-01"
+    ret = Quandl.get("FRED/NAPMII", authtoken= tokenName)
+    return ret.loc[time,"VALUE"]
+    
 
 #ISM Manufacturing: Employment Index
 Quandl.get("FRED/NAPMEI", authtoken="CVQWV6wLVWnrgjsVbc4g")
