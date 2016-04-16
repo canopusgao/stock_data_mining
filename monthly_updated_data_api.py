@@ -142,5 +142,15 @@ def get_quandl_ism_nm_boi_monthly(time):
 #ISM Non-manufacturing ends
 
 
-ret = Quandl.get("YAHOO/INDEX_GSPC", authtoken="CVQWV6wLVWnrgjsVbc4g")
-print ret.head(5)
+#S&P 500 index
+def get_quandl_sp500idx_monthly(time):
+    "Get specific data of s&p 500 index from Quandl. Daily updated monthly average data, time format: XXXX(YEAR)-XX(MONTH)"
+    ret = Quandl.get("YAHOO/INDEX_GSPC", authtoken= tokenName)
+    ret_temp = ret.loc[time,'Close']    
+    num1=0
+    numCnt = 0
+    for iter0 in ret_temp.index:
+        numCnt = numCnt + 1
+        num1 = num1 + ret_temp.loc[iter0]
+    
+    return num1/numCnt
